@@ -3,16 +3,33 @@ import pickle
 import pandas as pd
 import streamlit as st
 
+import pickle
+import pandas as pd
+import streamlit as st
+
+
+
+
+
+
 import requests
 import gzip
+from io import BytesIO
 
 # Fetch the compressed file from GitHub
-url = 'https://github.com/SiftainAhmad/Content-Based-Movie-Recommender/raw/main/similarity_20k.pkl.gz'
+url = 'https://github.com/SiftainAhmad/Content-Based-Movie-Recommender/raw/main/similarity_20k.pkl.gz'  # Use raw URL
 response = requests.get(url, stream=True)
 
 # Decompress the file and load the data
-with gzip.open(response.raw, 'rb') as f:
-    data = pickle.load(f)
+if response.status_code == 200:
+    with gzip.open(BytesIO(response.content), 'rb') as f:
+        data = pickle.load(f)
+else:
+    st.error(f"Failed to fetch file from {url}. Status code: {response.status_code}")
+
+
+
+
 
 
 
