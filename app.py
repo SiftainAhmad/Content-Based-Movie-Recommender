@@ -123,9 +123,6 @@
 
 
 
-
-
-
 import streamlit as st
 import gdown
 import pickle
@@ -136,19 +133,21 @@ def download_similarity_file():
     url = 'https://drive.google.com/your_link_to_similarity_20k.pkl'
     output = 'similarity_20k.pkl'
     gdown.download(url, output, quiet=False)
+    return output
 
 # Check if the similarity file exists, if not, download it
 if not os.path.exists('similarity_20k.pkl'):
-    download_similarity_file()
+    similarity_file_path = download_similarity_file()
+else:
+    similarity_file_path = 'similarity_20k.pkl'
 
 # Load data and UI setup
 movies_dict = pickle.load(open('movie_dict20k.pkl', 'rb'))
+movies = pd.DataFrame(movies_dict)
 
 # Load the similarity file
-with open('similarity_20k.pkl', 'rb') as f:
+with open(similarity_file_path, 'rb') as f:
     similarity = pickle.load(f)
-
-movies = pd.DataFrame(movies_dict)
 
 # Main UI
 st.markdown("<h1 style='color: #000000; background-color: #34AABD; padding: 10px; text-align: center; margin-bottom: 0; font-size: 35px;'>🎬 Movie Recommender</h1>", unsafe_allow_html=True)
@@ -176,5 +175,4 @@ if st.button('Show Recommendation'):
                     st.markdown(f"[{rec_movie[0]}]({imdb_link})", unsafe_allow_html=True)  # Render HTML in markdown
 
 # Footer with different background color
-
 st.markdown("<h3 style='color: black; background-color: #34AABD; padding: 10px; text-align: center; margin-top: 0; font-size: 14px;'> Dive into <span style='color: #EA051D;'>20,000</span>  Top-Rated Films ( <span style='color: #EA051D;'>2000-2024</span> ) and Explore IMDb Links!</h3>", unsafe_allow_html=True)
