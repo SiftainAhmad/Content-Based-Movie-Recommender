@@ -26,11 +26,11 @@ movies_dict = pickle.load(open('movie_dict20k.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
 
 # Load the similarity file
-# try:
+try:
 with open(similarity_file_path, 'rb') as f:
-        similarity = pickle.load(f)
-# except Exception as e:
-#     print("Error loading similarity file:", e)
+    similarity = pickle.load(f)
+except Exception as e:
+    print("Error loading similarity file:", e)
 
 # Print loaded similarity data for debugging
 # print("Loaded similarity data:", similarity)
