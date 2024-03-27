@@ -3,9 +3,6 @@ import pickle
 import pandas as pd
 import streamlit as st
 
-import pickle
-import pandas as pd
-import streamlit as st
 
 
 
@@ -14,19 +11,31 @@ import streamlit as st
 
 import pickle
 import streamlit as st
+import requests
+from io import BytesIO
 
-# Load the pickle file
-file_path = 'C:/Users/sifta/Desktop/Transformer/MRS/similarity_20k.pkl'
+# Function to download the file from Google Colab link
+def download_file_from_google_drive(url):
+    response = requests.get(url)
+    file = BytesIO(response.content)
+    return file
+
+# Google Colab file link
+file_url = "https://drive.google.com/file/d/1uGAroK80c70qGzzgFkwZv98PU3wlf9rL/view?usp=sharing"
+
+# Download the file
 try:
-    with open(file_path, 'rb') as f:
+    with download_file_from_google_drive(file_url) as f:
         similarity_data = pickle.load(f)
-except FileNotFoundError:
-    st.error(f"File '{file_path}' not found.")
 except Exception as e:
     st.error(f"Error loading file: {e}")
 else:
     # Use the loaded data in your Streamlit app
     st.write(similarity_data)
+
+
+
+
 
 
 
