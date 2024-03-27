@@ -126,12 +126,6 @@
 
 
 
-
-
-
-
-
-
 import streamlit as st
 import gdown
 import pickle
@@ -147,26 +141,13 @@ def download_similarity_file():
 if not os.path.exists('similarity_20k.pkl'):
     download_similarity_file()
 
-# Function to fetch movie details based on IMDb ID
-def get_movie_details(imdb_id):
-    imdb_link = f"https://www.imdb.com/title/{imdb_id}/"
-    return imdb_link
-
-# Function to fetch movie poster URL
-def get_movie_poster(poster_path):
-    return f"https://image.tmdb.org/t/p/w500/{poster_path}"
-
-# Function to recommend movies
-def recommend(movie, val):
-    movie_index = movies[movies['title'] == movie].index[0]
-    distances = similarity[movie_index]
-    movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:val + 1]
-    recommended_movies = [(movies.iloc[i[0]].title, movies.iloc[i[0]].imdb_id, movies.iloc[i[0]].poster_path) for i in movies_list]
-    return recommended_movies
-
 # Load data and UI setup
 movies_dict = pickle.load(open('movie_dict20k.pkl', 'rb'))
-similarity = pickle.load(open('similarity_20k.pkl', 'rb'))
+
+# Load the similarity file
+with open('similarity_20k.pkl', 'rb') as f:
+    similarity = pickle.load(f)
+
 movies = pd.DataFrame(movies_dict)
 
 # Main UI
