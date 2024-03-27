@@ -1,16 +1,23 @@
-
 import streamlit as st
 import gdown
 import pickle
 import os
 import pandas as pd
 import numpy as np
+
 # Function to download the similarity_20k.pkl file
 def download_similarity_file():
+    file_id = '1uGAroK80c70qGzzgFkwZv98PU3wlf9rL'  # Extracted file ID from the Google Drive sharing link
     url = 'https://drive.google.com/file/d/1uGAroK80c70qGzzgFkwZv98PU3wlf9rL/view?usp=sharing'
     output = 'similarity_20k.pkl'
     gdown.download(url, output, quiet=False)
     return output
+
+# Check if the similarity file exists, if not, download it
+if not os.path.exists('similarity_20k.pkl'):
+    similarity_file_path = download_similarity_file()
+else:
+    similarity_file_path = 'similarity_20k.pkl'
 
 # Check if the similarity file exists, if not, download it
 if not os.path.exists('similarity_20k.pkl'):
