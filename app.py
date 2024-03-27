@@ -7,7 +7,7 @@ import requests
 import gzip
 
 # Fetch the compressed file from GitHub
-url = 'https://github.com/SiftainAhmad/Content-Based-Movie-Recommender/blob/main/similarity_20k.pkl.gz'
+url = 'https://github.com/SiftainAhmad/Content-Based-Movie-Recommender/raw/main/similarity_20k.pkl.gz'
 response = requests.get(url, stream=True)
 
 # Decompress the file and load the data
