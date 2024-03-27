@@ -19,12 +19,6 @@ if not os.path.exists('similarity_20k.pkl'):
 else:
     similarity_file_path = 'similarity_20k.pkl'
 
-# Check if the similarity file exists, if not, download it
-if not os.path.exists('similarity_20k.pkl'):
-    similarity_file_path = download_similarity_file()
-else:
-    similarity_file_path = 'similarity_20k.pkl'
-
 # Print file path for debugging
 # print("Similarity file path:", similarity_file_path)
 
@@ -58,10 +52,6 @@ def recommend(movie, val):
     movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:val + 1]
     recommended_movies = [(movies.iloc[i[0]].title, movies.iloc[i[0]].imdb_id, movies.iloc[i[0]].poster_path) for i in movies_list]
     return recommended_movies
-
-
-
-
 
 
 # Main UI
