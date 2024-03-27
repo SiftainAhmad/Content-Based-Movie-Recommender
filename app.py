@@ -3,6 +3,20 @@ import pickle
 import pandas as pd
 import streamlit as st
 
+import requests
+import gzip
+
+# Fetch the compressed file from GitHub
+url = 'https://github.com/SiftainAhmad/Content-Based-Movie-Recommender/blob/main/similarity_20k.pkl.gz'
+response = requests.get(url, stream=True)
+
+# Decompress the file and load the data
+with gzip.open(response.raw, 'rb') as f:
+    data = pickle.load(f)
+
+
+
+
 # Function to fetch movie details based on IMDb ID
 def get_movie_details(imdb_id):
     imdb_link = f"https://www.imdb.com/title/{imdb_id}/"
