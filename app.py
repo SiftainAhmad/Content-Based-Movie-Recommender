@@ -16,7 +16,7 @@ import pickle
 import streamlit as st
 
 # Load the pickle file
-file_path = 'C:\Users\sifta\Desktop\Transformer\MRS\similarity_20k.pkl'
+file_path = 'C:/Users/sifta/Desktop/Transformer/MRS/similarity_20k.pkl'
 try:
     with open(file_path, 'rb') as f:
         similarity_data = pickle.load(f)
