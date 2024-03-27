@@ -27,8 +27,8 @@ movies = pd.DataFrame(movies_dict)
 
 # Load the similarity file
 try:
-with open(similarity_file_path, 'rb') as f:
-    similarity = pickle.load(f)
+    with open(similarity_file_path, 'rb') as f:
+        similarity = pickle.load(f)
 except Exception as e:
     print("Error loading similarity file:", e)
 
