@@ -117,18 +117,11 @@
 
 
 
-
-
-
-
-
-
 import streamlit as st
 import gdown
 import pickle
 import os
-import pandas as pd
-import numpy as np
+
 # Function to download the similarity_20k.pkl file
 def download_similarity_file():
     url = 'https://drive.google.com/your_link_to_similarity_20k.pkl'
@@ -142,13 +135,29 @@ if not os.path.exists('similarity_20k.pkl'):
 else:
     similarity_file_path = 'similarity_20k.pkl'
 
+# Print file path for debugging
+print("Similarity file path:", similarity_file_path)
+
 # Load data and UI setup
 movies_dict = pickle.load(open('movie_dict20k.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
 
 # Load the similarity file
-with open(similarity_file_path, 'rb') as f:
-    similarity = pickle.load(f)
+try:
+    with open(similarity_file_path, 'rb') as f:
+        similarity = pickle.load(f)
+except Exception as e:
+    print("Error loading similarity file:", e)
+
+# Print loaded similarity data for debugging
+print("Loaded similarity data:", similarity)
+
+
+
+
+
+
+
 
 # Main UI
 st.markdown("<h1 style='color: #000000; background-color: #34AABD; padding: 10px; text-align: center; margin-bottom: 0; font-size: 35px;'>🎬 Movie Recommender</h1>", unsafe_allow_html=True)
