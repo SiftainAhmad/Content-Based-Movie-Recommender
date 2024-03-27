@@ -125,7 +125,7 @@ import pandas as pd
 import numpy as np
 # Function to download the similarity_20k.pkl file
 def download_similarity_file():
-    url = 'https://drive.google.com/your_link_to_similarity_20k.pkl'
+    url = 'https://drive.google.com/file/d/1uGAroK80c70qGzzgFkwZv98PU3wlf9rL/view?usp=sharing'
     output = 'similarity_20k.pkl'
     gdown.download(url, output, quiet=False)
     return output
@@ -137,7 +137,7 @@ else:
     similarity_file_path = 'similarity_20k.pkl'
 
 # Print file path for debugging
-print("Similarity file path:", similarity_file_path)
+# print("Similarity file path:", similarity_file_path)
 
 # Load data and UI setup
 movies_dict = pickle.load(open('movie_dict20k.pkl', 'rb'))
@@ -151,7 +151,7 @@ except Exception as e:
     print("Error loading similarity file:", e)
 
 # Print loaded similarity data for debugging
-print("Loaded similarity data:", similarity)
+# print("Loaded similarity data:", similarity)
 
 
 
