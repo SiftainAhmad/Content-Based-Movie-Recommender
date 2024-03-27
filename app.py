@@ -12,22 +12,21 @@ import streamlit as st
 
 
 
-import requests
-import gzip
-from io import BytesIO
+import pickle
+import streamlit as st
 
-# Fetch the compressed file from GitHub
-url = 'https://github.com/SiftainAhmad/Content-Based-Movie-Recommender/raw/main/similarity_20k.pkl.gz'  # Use raw URL
-response = requests.get(url, stream=True)
-
-# Decompress the file and load the data
-if response.status_code == 200:
-    with gzip.open(BytesIO(response.content), 'rb') as f:
-        data = pickle.load(f)
+# Load the pickle file
+file_path = 'C:\Users\sifta\Desktop\Transformer\MRS\similarity_20k.pkl'
+try:
+    with open(file_path, 'rb') as f:
+        similarity_data = pickle.load(f)
+except FileNotFoundError:
+    st.error(f"File '{file_path}' not found.")
+except Exception as e:
+    st.error(f"Error loading file: {e}")
 else:
-    st.error(f"Failed to fetch file from {url}. Status code: {response.status_code}")
-
-
+    # Use the loaded data in your Streamlit app
+    st.write(similarity_data)
 
 
 
