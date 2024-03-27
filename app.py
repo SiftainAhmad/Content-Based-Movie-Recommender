@@ -121,7 +121,8 @@ import streamlit as st
 import gdown
 import pickle
 import os
-
+import pandas as pd
+import numpy as np
 # Function to download the similarity_20k.pkl file
 def download_similarity_file():
     url = 'https://drive.google.com/your_link_to_similarity_20k.pkl'
