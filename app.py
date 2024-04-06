@@ -16,9 +16,6 @@ def recommend(movie, val):
     movie_index = movies[movies['title'] == movie].index[0]
     movie_list = similarity[movie_index]
     movie_list=movie_list[1:val+1]
-    print("movie_list:", movie_list)
-    # movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:val + 1]
-    # recommended_movies = [(movies.iloc[i[0]].title, movies.iloc[i[0]].imdb_id, movies.iloc[i[0]].poster_path,i[1]) for i in movie_list]
     recommended_movies = [(movies.iloc[i[0]].title, movies.iloc[i[0]].imdb_id, movies.iloc[i[0]].poster_path, i[1]) for i in movie_list]
     return recommended_movies
 
