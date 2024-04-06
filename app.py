@@ -53,19 +53,3 @@ if st.button('Show Recommendation'):
 # st.markdown("<h3 style='color: white; background-color: #34AABD; padding: 10px; text-align: center; margin-top: 0; font-size: 14px;'>Explore 20,000 top-rated films from 2000 to 2024. Dive in and enjoy!</h3>", unsafe_allow_html=True)
 
 st.markdown("<h3 style='color: black; background-color: #34AABD; padding: 10px; text-align: center; margin-top: 0; font-size: 14px;'> Dive into <span style='color: #EA051D;'>20,000</span>  Top-Rated Films ( <span style='color: #EA051D;'>2000-2024</span> ) and Explore IMDb Links!</h3>", unsafe_allow_html=True)
-
-
-import base64  # Add this import for base64 encoding
-# Path to your local image file
-background_image_path = "D:\HD_Wallpapers\hd_a91644acb03146e6377c5c3af80935a3.jpg"
-# Add background image to the app
-st.markdown(
-    f"""
-    <style>
-        .reportview-container {{
-            background: url(data:image/jpeg;base64,{base64.b64encode(open(background_image_path, "rb").read()).decode()})
-        }}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
