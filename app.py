@@ -27,7 +27,7 @@ movies = pd.DataFrame(movies_dict)
 # Main UI
 st.markdown("<h1 style='color: #000000; background-color: #34AABD; padding: 10px; text-align: center; margin-bottom: 0; font-size: 35px;'>🎬 Movie Recommender</h1>", unsafe_allow_html=True)
 selected_movie = st.selectbox("Type or select a movie from the dropdown", movies['title'].values)
-num_movies_str = st.text_input("Select the number of related movies", "5")
+num_movies_str = st.text_input("Select the number of related movies (max 10)", "5")
 num_movies = int(num_movies_str)
 
 # Show recommendations on button click
